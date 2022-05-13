@@ -1,8 +1,16 @@
 import './App.css';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import Converter from '../Converter/Converter'
+import * as СurrencyApi from '../../utils/СurrencyApi'
+import React from 'react';
+
 
 function App() {
+
+  React.useEffect(() => {
+    СurrencyApi.getСurrency();
+  }, [])
+
   return (
     <div className="page__container">
       <Switch>
