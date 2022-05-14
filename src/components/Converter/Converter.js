@@ -1,8 +1,16 @@
+import React from 'react';
 import './Converter.css'
 
-function Converter() {
+function Converter({currency}) {
 
+  const [item, setItem] = React.useState({})
 
+  React.useEffect(() => {
+    let valute = JSON.parse(localStorage.getItem('cur'))
+    setItem(valute)
+  }, [])
+
+  // console.log(item);
 
   return (
     <section className='converter'>
@@ -14,7 +22,8 @@ function Converter() {
       &#8658;
       <select>
         <option disabled>Выберите валюту</option>
-        <option value="dollasr" key="">USD</option>
+        {/* <option value="dollasr" key="">{JSON.stringify(currency.USD.CharCode)}</option> */}
+        {/* <option value="dollasr" key="">{JSON.stringify(item.USD.CharCode)}</option> */}
       </select>
       <p>result</p>
     </section>

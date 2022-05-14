@@ -7,15 +7,27 @@ import React from 'react';
 
 function App() {
 
+  const [isСurrency, setСurrency] = React.useState({});
+
   React.useEffect(() => {
-    СurrencyApi.getСurrency();
+    СurrencyApi.getСurrency()
+    .then((item) => {
+      localStorage.setItem('cur', JSON.stringify(item.Valute))
+      // setСurrency(item.Valute)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }, [])
+
 
   return (
     <div className="page__container">
       <Switch>
         <Route exact path='/'>
-            <Converter/>
+            <Converter
+              currency = {isСurrency}
+            />
         </Route>
 
         <Route exact path='/exchange'>
