@@ -9,16 +9,21 @@ function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
 
-  // React.useEffect(() => {
-  //   СurrencyApi.getСurrency()
-  //   .then((item) => {
-  //     localStorage.setItem('cur', JSON.stringify(item.Valute))
-  //     // setСurrency(item.Valute)
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }, [])
+  React.useEffect(() => {
+    СurrencyApi.getСurrency('USD', 'EUR')
+    .then((item) => {
+      localStorage.setItem('cur', JSON.stringify(item))
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
+  React.useEffect(() => {
+    let valute = JSON.parse(localStorage.getItem('cur'))
+    setСurrency(valute)
+  }, [])
+
 
 
   return (

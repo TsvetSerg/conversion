@@ -14,7 +14,7 @@ function Converter({currency}) {
   // }, [])
 
   React.useEffect((i) => {
-    i = input * 0.015
+    i = input * currency.result
     setResult(i)
 
   }, [input])
@@ -34,15 +34,15 @@ function Converter({currency}) {
         <input value={input} onChange={handelChangeInput} className='converter__input' type="number" />
         <select>
           <option disabled>Выберите валюту</option>
-          <option value="RUB" key="">RUB</option>
+          <option value="USD" key="">USD</option>
           {/* <option value="USD" key="">USD</option> */}
         </select>
         &#8658;
         <label>
           <select value={val} onChange={handelChangeValues}>
             <option disabled>Выберите валюту</option>
-            <option value="USD" key="">USD</option>
-            <option value="GBR" key="">GBR</option>
+            <option value="EUR" key="">EUR</option>
+            {/* <option value="GBR" key="">GBR</option> */}
             {/* <option value="RUB" key="">RUB</option> */}
           </select>
         </label>
