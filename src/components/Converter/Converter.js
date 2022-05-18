@@ -3,29 +3,53 @@ import './Converter.css'
 
 function Converter({currency}) {
 
-  const [item, setItem] = React.useState({})
+  const [ item, setItem ] = React.useState({});
+  const [ result, setResult ] = React.useState('0');
+  const [ input, setInput ] = React.useState('');
+  const [ val, setVal ] = React.useState('USD')
 
-  React.useEffect(() => {
-    let valute = JSON.parse(localStorage.getItem('cur'))
-    setItem(valute)
-  }, [])
+  // React.useEffect(() => {
+  //   let valute = JSON.parse(localStorage.getItem('cur'))
+  //   setItem(valute)
+  // }, [])
 
-  // console.log(item);
+  React.useEffect((i) => {
+    i = input * 0.015
+    setResult(i)
+
+  }, [input])
+
+  function handelChangeInput(e) {
+    setInput(e.target.value);
+  }
+
+  function handelChangeValues(e) {
+    setVal(e.target.value)
+  }
+
 
   return (
     <section className='converter'>
-      <input className='converter__input' type="number" />
-      <select>
-        <option disabled>Выберите валюту</option>
-        <option value="dollasr" key="">RUB</option>
-      </select>
-      &#8658;
-      <select>
-        <option disabled>Выберите валюту</option>
-        {/* <option value="dollasr" key="">{JSON.stringify(currency.USD.CharCode)}</option> */}
-        {/* <option value="dollasr" key="">{JSON.stringify(item.USD.CharCode)}</option> */}
-      </select>
-      <p>result</p>
+      <form>
+        <input value={input} onChange={handelChangeInput} className='converter__input' type="number" />
+        <select>
+          <option disabled>Выберите валюту</option>
+          <option value="RUB" key="">RUB</option>
+          {/* <option value="USD" key="">USD</option> */}
+        </select>
+        &#8658;
+        <label>
+          <select value={val} onChange={handelChangeValues}>
+            <option disabled>Выберите валюту</option>
+            <option value="USD" key="">USD</option>
+            <option value="GBR" key="">GBR</option>
+            {/* <option value="RUB" key="">RUB</option> */}
+          </select>
+        </label>
+
+      </form>
+
+      <p>{result} {val}</p>
     </section>
   )
 }
