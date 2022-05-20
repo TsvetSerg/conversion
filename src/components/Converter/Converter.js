@@ -1,5 +1,6 @@
 import React from 'react';
 import './Converter.css'
+import img from '../../vendor/images/arrow.svg'
 
 function Converter({currency, exchangeRate}) {
 
@@ -38,35 +39,39 @@ function Converter({currency, exchangeRate}) {
 
   return (
     <section className='converter'>
-      <form>
-        <input value={input} onChange={handelChangeInput} className='converter__input' type="number" />
-        <select value={from} onChange={handelChangeValueFrom}>
-          <option disabled>Выберите валюту</option>
-          <option value="GBP">GBP</option>
-          <option value="USD">USD</option>
-          <option value="RUB">RUB</option>
-          <option value="EUR">EUR</option>
-          <option value="CHF">CHF</option>
-          <option value="JPY">JPY</option>
-          <option value="UAH">UAH</option>
-          <option value="PLN">PLN</option>
-        </select>
-        &#8658;
-        <select value={to} onChange={handelChangeValues}>
-          <option disabled>Выберите валюту</option>
-          <option value="GBP">GBP</option>
-          <option value="USD">USD</option>
-          <option value="RUB">RUB</option>
-          <option value="EUR">EUR</option>
-          <option value="CHF">CHF</option>
-          <option value="JPY">JPY</option>
-          <option value="UAH">UAH</option>
-          <option value="PLN">PLN</option>
+      <form className='converter__form'>
+
+        <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
+          {/* <option className="converter__opt" disabled>Выберите валюту</option> */}
+          <option className="converter__opt" value="GBP">GBP</option>
+          <option className="converter__opt" value="USD">USD</option>
+          <option className="converter__opt" value="RUB">RUB</option>
+          <option className="converter__opt" value="EUR">EUR</option>
+          <option className="converter__opt" value="CHF">CHF</option>
+          <option className="converter__opt" value="JPY">JPY</option>
+          <option className="converter__opt" value="UAH">UAH</option>
+          <option className="converter__opt" value="PLN">PLN</option>
         </select>
 
+        {/* <img src={img} alt="" /> */}
+        <button className='converter__swap'></button>
+
+        <select className="converter__select" value={to} onChange={handelChangeValues}>
+          {/* <option className="converter__opt" disabled>Выберите валюту</option> */}
+          <option className="converter__opt" value="GBP">GBP</option>
+          <option className="converter__opt" value="USD">USD</option>
+          <option className="converter__opt" value="RUB">RUB</option>
+          <option className="converter__opt" value="EUR">EUR</option>
+          <option className="converter__opt" value="CHF">CHF</option>
+          <option className="converter__opt" value="JPY">JPY</option>
+          <option className="converter__opt" value="UAH">UAH</option>
+          <option className="converter__opt" value="PLN">PLN</option>
+        </select>
+
+        <input placeholder='Введите число' className='converter__input' value={input} onChange={handelChangeInput} type="number" />
       </form>
 
-      <p>{result} {to}</p>
+      <p className="converter__result">{result} {to}</p>
     </section>
   )
 }

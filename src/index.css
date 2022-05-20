@@ -1,13 +1,2 @@
-body {
-  margin: 0;
-  font-family: Inter;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: Inter;
-}
-
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/inter.css');

@@ -30,16 +30,16 @@ function App() {
   }
 
   function getExchangeRate(from, to) {
-    СurrencyApi.getСurrency(from, to)
-    .then((i) => {
-      localStorage.setItem('Сurrency', JSON.stringify(i))
-    })
-    .then(() => {
-      handelLocal()
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    // СurrencyApi.getСurrency(from, to)
+    // .then((i) => {
+    //   localStorage.setItem('Сurrency', JSON.stringify(i))
+    // })
+    // .then(() => {
+    //   handelLocal()
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
   }
 
 
