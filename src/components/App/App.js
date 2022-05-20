@@ -9,20 +9,38 @@ function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
 
-  React.useEffect(() => {
-    СurrencyApi.getСurrency('USD', 'EUR')
-    .then((item) => {
-      localStorage.setItem('cur', JSON.stringify(item))
+  // React.useEffect(() => {
+  //   СurrencyApi.getСurrency('USD', 'EUR')
+  //   .then((item) => {
+  //     localStorage.setItem('Сurrency', JSON.stringify(item))
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }, [])
+
+  // React.useEffect(() => {
+  //   let valute = JSON.parse(localStorage.getItem('Сurrency'))
+  //   setСurrency(valute)
+  // }, [])
+
+  function handelLocal() {
+    let valute = JSON.parse(localStorage.getItem('Сurrency'))
+    setСurrency(valute)
+  }
+
+  function getExchangeRate(from, to) {
+    СurrencyApi.getСurrency(from, to)
+    .then((i) => {
+      localStorage.setItem('Сurrency', JSON.stringify(i))
+    })
+    .then(() => {
+      handelLocal()
     })
     .catch((err) => {
       console.log(err);
     })
-  }, [])
-
-  React.useEffect(() => {
-    let valute = JSON.parse(localStorage.getItem('cur'))
-    setСurrency(valute)
-  }, [])
+  }
 
 
 
@@ -32,6 +50,7 @@ function App() {
         <Route exact path='/'>
             <Converter
               currency = {isСurrency}
+              exchangeRate = {getExchangeRate}
             />
         </Route>
 
