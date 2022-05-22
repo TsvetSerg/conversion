@@ -1,10 +1,9 @@
 import React from 'react';
 import './Converter.css'
-import img from '../../vendor/images/arrow.svg'
 
 function Converter({currency, exchangeRate}) {
 
-  const [ item, setItem ] = React.useState({});
+  // const [ item, setItem ] = React.useState({});
   const [ result, setResult ] = React.useState('0');
   const [ input, setInput ] = React.useState('');
   const [ to, setTo ] = React.useState('USD')
@@ -42,7 +41,6 @@ function Converter({currency, exchangeRate}) {
       <form className='converter__form'>
 
         <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
-          {/* <option className="converter__opt" disabled>Выберите валюту</option> */}
           <option className="converter__opt" value="GBP">GBP</option>
           <option className="converter__opt" value="USD">USD</option>
           <option className="converter__opt" value="RUB">RUB</option>
@@ -53,11 +51,9 @@ function Converter({currency, exchangeRate}) {
           <option className="converter__opt" value="PLN">PLN</option>
         </select>
 
-        {/* <img src={img} alt="" /> */}
         <button className='converter__swap'></button>
 
         <select className="converter__select" value={to} onChange={handelChangeValues}>
-          {/* <option className="converter__opt" disabled>Выберите валюту</option> */}
           <option className="converter__opt" value="GBP">GBP</option>
           <option className="converter__opt" value="USD">USD</option>
           <option className="converter__opt" value="RUB">RUB</option>

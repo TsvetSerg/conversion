@@ -1,13 +1,16 @@
 import './App.css';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import Converter from '../Converter/Converter'
-import * as СurrencyApi from '../../utils/СurrencyApi'
+import Converter from '../Converter/Converter';
+import Rates from '../Rates/Rates';
+import * as СurrencyApi from '../../utils/СurrencyApi';
+import * as RatesApi from '../../utils/RatesApi';
 import React from 'react';
 
 
 function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
+  const [isRates, setRates] = React.useState({});
 
   // React.useEffect(() => {
   //   СurrencyApi.getСurrency('USD', 'EUR')
@@ -24,9 +27,14 @@ function App() {
   //   setСurrency(valute)
   // }, [])
 
-  function handelLocal() {
+  function handelLocalVal() {
     let valute = JSON.parse(localStorage.getItem('Сurrency'))
     setСurrency(valute)
+  }
+
+  function handelLocalRat() {
+    let rates = JSON.parse(localStorage.getItem('rates'))
+    setRates(rates)
   }
 
   function getExchangeRate(from, to) {
@@ -35,11 +43,24 @@ function App() {
     //   localStorage.setItem('Сurrency', JSON.stringify(i))
     // })
     // .then(() => {
-    //   handelLocal()
+    //   handelLocalVal()
     // })
     // .catch((err) => {
     //   console.log(err);
     // })
+  }
+
+  function getLatesQuote(base) {
+    RatesApi.getRates(base)
+    .then((i) => {
+      localStorage.setItem('rates', JSON.stringify(i.rates))
+    })
+    .then(() => {
+      handelLocalRat()
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
 
@@ -54,8 +75,11 @@ function App() {
             />
         </Route>
 
-        <Route exact path='/exchange'>
-            <h1>11111</h1>
+        <Route exact path='/rates'>
+            <Rates
+              rates = {isRates}
+              lastQuote = {getLatesQuote}
+            />
         </Route>
       </Switch>
 
