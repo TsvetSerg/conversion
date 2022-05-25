@@ -4,6 +4,7 @@ import Converter from '../Converter/Converter';
 import Rates from '../Rates/Rates';
 import * as СurrencyApi from '../../utils/СurrencyApi';
 import * as RatesApi from '../../utils/RatesApi';
+import * as CurrDataApi from '../../utils/CurrDataApi';
 import React from 'react';
 
 
@@ -52,6 +53,20 @@ function App() {
 
   function getLatesQuote(base) {
     RatesApi.getRates(base)
+    .then((i) => {
+      localStorage.setItem('rates', JSON.stringify(i.rates))
+    })
+    .then(() => {
+      handelLocalRat()
+    })
+    .catch((err) => {
+      console.log(err);
+      getLatesQuoteData(base)
+    })
+  }
+
+  function getLatesQuoteData(base) {
+    CurrDataApi.Lair(base)
     .then((i) => {
       localStorage.setItem('rates', JSON.stringify(i.rates))
     })
