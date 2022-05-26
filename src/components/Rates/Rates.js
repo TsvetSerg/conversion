@@ -6,9 +6,9 @@ function Rates({rates, lastQuote}) {
 
   const [ isBase, setBase ] = React.useState('USD')
 
-  // React.useEffect(() => {
-  //   lastQuote(isBase)
-  // }, [isBase])
+  React.useEffect(() => {
+    lastQuote(isBase)
+  }, [isBase])
 
   function handelChangeSelect(e) {
     setBase(e.target.value)
@@ -27,14 +27,16 @@ function Rates({rates, lastQuote}) {
         <option className="rates__opt" value="PLN">PLN</option>
       </select>
       <ul className="rates__list">
-        {/* {
+        {
           rates.map((data) => {
             return (<Item
               data={data}
+              key={Object.keys(data)}
+
             />)
           })
-        } */}
-        <li className="item">
+        }
+        {/* <li className="item">
           <h2 className="item__title">GBP</h2>
           <p className="item__subtitle">{rates.GBP}</p>
         </li>
@@ -69,7 +71,7 @@ function Rates({rates, lastQuote}) {
         <li className="item">
           <h2 className="item__title">TRY</h2>
           <p className="item__subtitle">{rates.TRY}</p>
-        </li>
+        </li> */}
       </ul>
       <button className="rates___btn">Еще</button>
     </section>

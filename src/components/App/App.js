@@ -11,7 +11,7 @@ import React from 'react';
 function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
-  const [isRates, setRates] = React.useState({});
+  const [isRates, setRates] = React.useState([]);
 
   // React.useEffect(() => {
   //   СurrencyApi.getСurrency('USD', 'EUR')
@@ -54,7 +54,8 @@ function App() {
   function getLatesQuote(base) {
     RatesApi.getRates(base)
     .then((i) => {
-      localStorage.setItem('rates', JSON.stringify(i.rates))
+      let result = getKeys(i.rates)
+      localStorage.setItem('rates', JSON.stringify(result))
     })
     .then(() => {
       handelLocalRat()
@@ -68,7 +69,8 @@ function App() {
   function getLatesQuoteData(base) {
     CurrDataApi.Lair(base)
     .then((i) => {
-      localStorage.setItem('rates', JSON.stringify(i.rates))
+      let result = getKeys(i.rates)
+      localStorage.setItem('rates', JSON.stringify(result))
     })
     .then(() => {
       handelLocalRat()
@@ -77,6 +79,29 @@ function App() {
       console.log(err);
     })
   }
+
+  // const arr = {
+  //   a: 123123,
+  //   d: 1231231231,
+  //   f: 123333444,
+  //   j: 1233333
+  // }
+
+
+  function getKeys(item) {
+    let result = Object.keys(item).map((key) => {
+      return {[key]: item[key]};
+    })
+    return result
+  }
+
+  // React.useEffect(() => {
+  //   let item = getKeys(arr)
+  //   localStorage.setItem('array', JSON.stringify(item))
+  // }, [])
+
+
+
 
 
 
