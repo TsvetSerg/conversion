@@ -1,6 +1,7 @@
 import React from "react";
 import './Rates.css';
 import Item from '../Item/Item';
+import { Link } from 'react-router-dom';
 
 function Rates({rates, lastQuote}) {
 
@@ -64,44 +65,9 @@ function Rates({rates, lastQuote}) {
             />)
           })
         }
-        {/* <li className="item">
-          <h2 className="item__title">GBP</h2>
-          <p className="item__subtitle">{rates.GBP}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">USD</h2>
-          <p className="item__subtitle">{rates.USD}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">RUB</h2>
-          <p className="item__subtitle">{rates.RUB}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">EUR</h2>
-          <p className="item__subtitle">{rates.EUR}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">CHF</h2>
-          <p className="item__subtitle">{rates.CHF}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">JPY</h2>
-          <p className="item__subtitle">{rates.JPY}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">UAH</h2>
-          <p className="item__subtitle">{rates.UAH}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">PLN</h2>
-          <p className="item__subtitle">{rates.PLN}</p>
-        </li>
-        <li className="item">
-          <h2 className="item__title">TRY</h2>
-          <p className="item__subtitle">{rates.TRY}</p>
-        </li> */}
       </ul>
       <button onClick={handelAddCurrency} className="rates___btn">Еще</button>
+      <Link className="converter__link" to='/'>Конвертировать валюту</Link>
     </section>
   )
 }

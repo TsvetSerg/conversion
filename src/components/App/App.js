@@ -42,15 +42,19 @@ function App() {
 
   function getExchangeRate(from, to) {
     СurrencyApi.getСurrency(from, to)
-    .then((i) => {
-      localStorage.setItem('Сurrency', JSON.stringify(i))
+    .then((response, i) => {
+      if (response.ok) {
+        localStorage.setItem('Сurrency', JSON.stringify(i))
+      } else {
+        getFixRate(from, to);
+      }
+
     })
     .then(() => {
       handelLocalVal()
     })
     .catch((err) => {
-      console.log('123123123');
-      getFixRate(from, to)
+      console.log(err);
     })
   }
 

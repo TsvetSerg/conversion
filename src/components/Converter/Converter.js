@@ -17,12 +17,16 @@ function Converter({currency, exchangeRate, unit}) {
 
   React.useEffect((i) => {
     i = input * currency.result
-    setResult(i)
+    setResult(rounded(i))
 
   }, [input, currency])
 
   function handelChangeInput(e) {
-    setInput(e.target.value);
+    setInput(e.target.value.replace(/[^\d+$]/g, ''));
+  }
+
+  function handelChangeResult(e) {
+    setResult(e.target.value.replace(/[^\d+$]/g, ''));
   }
 
   function handelChangeValues(e) {
@@ -44,11 +48,15 @@ function Converter({currency, exchangeRate, unit}) {
     setTo(g)
   }
 
+  const rounded = function(number){
+    return +number.toFixed(2);
+}
+
   return (
     <section className='converter'>
       <form className='converter__form'>
 
-        <input className='converter__input' autoComplete='off' type="text" />
+        <input className='converter__input' autoComplete='off' type="text" value={input} onChange={handelChangeInput}/>
         <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
           <option value="GBP">GBP</option>
           <option value="USD">USD</option>
@@ -62,7 +70,7 @@ function Converter({currency, exchangeRate, unit}) {
 
         <button onClick={hendelSwap} className='converter__swap'></button>
 
-        <input className='converter__input' type="text" />
+        <input className='converter__input' type="text" autoComplete='off' value={result}/>
         <select className="converter__select" value={to} onChange={handelChangeValues}>
           <option value="GBP">GBP</option>
           <option value="USD">USD</option>
@@ -73,8 +81,6 @@ function Converter({currency, exchangeRate, unit}) {
           <option value="UAH">UAH</option>
           <option value="PLN">PLN</option>
         </select>
-
-        {/* <input placeholder='Введите число' className='converter__input' value={input} onChange={handelChangeInput} type="number" /> */}
       </form>
       <p className="converter__result">1 {from} = {unit} {to}</p>
       <Link className='converter__link' to="/rates">Посмотреть курс всех валют</Link>
