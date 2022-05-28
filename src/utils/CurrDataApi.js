@@ -9,7 +9,10 @@ var requestOptions = {
 
 export const Lair = (base) => {
   return fetch(`https://api.apilayer.com/fixer/latest?base=${base}`, requestOptions)
-    .then(response => response.json())
-    // .then(result => console.log(result))
-    // .catch(error => console.log('error', error));
+    .then(response => response.json());
+}
+
+export const Convert = (from, to) => {
+  return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=1`, requestOptions)
+  .then(response => response.json());
 }

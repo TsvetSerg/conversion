@@ -9,9 +9,7 @@ var requestOptions = {
 
 export const getСurrency = (from, to) => {
   return fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=1`, requestOptions)
-    .then(response => response.json())
-    // .then(result => console.log(result))
-    // .catch(error => console.log('error', error));
+    .then(response => response.json());
 }
 
 

@@ -1,10 +1,33 @@
 import React from "react";
-import './Rates.css'
-import Item from '../Item/Item'
+import './Rates.css';
+import Item from '../Item/Item';
 
 function Rates({rates, lastQuote}) {
 
   const [ isBase, setBase ] = React.useState('USD')
+
+  const [ currencyOnDisplay, setCurrencyOnDisplay ] = React.useState(() => {
+    if (window.innerWidth > 1279) {
+      return 9
+    } else if (window.innerWidth > 768) {
+      return 6
+    } else if (window.innerWidth > 320) {
+      return 4
+    }
+  })
+
+  const [ addCurrencyBtn, setCurrencyBtn ] = React.useState(() => {
+    if (window.innerWidth > 1279) {
+      return 6
+    } else if (window.innerWidth > 768) {
+      return 3
+    } else if (window.innerWidth > 320) {
+      return 1
+    }
+  })
+
+  const RatesData = rates.slice(0, currencyOnDisplay)
+
 
   React.useEffect(() => {
     lastQuote(isBase)
@@ -14,10 +37,15 @@ function Rates({rates, lastQuote}) {
     setBase(e.target.value)
   }
 
+  function handelAddCurrency(e) {
+    e.preventDefault();
+    setCurrencyOnDisplay(i => i + addCurrencyBtn)
+  }
+
   return (
     <section className="rates">
       <select className="rates__select" onChange={handelChangeSelect} value={isBase}>
-        <option className="rates__opt" value="GBP">GBP</option>
+        <option className="rates__opt" value="GBP">1 GBP</option>
         <option className="rates__opt" value="USD">USD</option>
         <option className="rates__opt" value="RUB">RUB</option>
         <option className="rates__opt" value="EUR">EUR</option>
@@ -28,7 +56,7 @@ function Rates({rates, lastQuote}) {
       </select>
       <ul className="rates__list">
         {
-          rates.map((data) => {
+          RatesData.map((data) => {
             return (<Item
               data={data}
               key={Object.keys(data)}
@@ -73,7 +101,7 @@ function Rates({rates, lastQuote}) {
           <p className="item__subtitle">{rates.TRY}</p>
         </li> */}
       </ul>
-      <button className="rates___btn">Еще</button>
+      <button onClick={handelAddCurrency} className="rates___btn">Еще</button>
     </section>
   )
 }

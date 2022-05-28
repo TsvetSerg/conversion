@@ -12,6 +12,7 @@ function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
   const [isRates, setRates] = React.useState([]);
+  const [unit, setUnit] = React.useState('')
 
   // React.useEffect(() => {
   //   СurrencyApi.getСurrency('USD', 'EUR')
@@ -31,6 +32,7 @@ function App() {
   function handelLocalVal() {
     let valute = JSON.parse(localStorage.getItem('Сurrency'))
     setСurrency(valute)
+    setUnit(valute.result)
   }
 
   function handelLocalRat() {
@@ -39,16 +41,30 @@ function App() {
   }
 
   function getExchangeRate(from, to) {
-    // СurrencyApi.getСurrency(from, to)
-    // .then((i) => {
-    //   localStorage.setItem('Сurrency', JSON.stringify(i))
-    // })
-    // .then(() => {
-    //   handelLocalVal()
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // })
+    СurrencyApi.getСurrency(from, to)
+    .then((i) => {
+      localStorage.setItem('Сurrency', JSON.stringify(i))
+    })
+    .then(() => {
+      handelLocalVal()
+    })
+    .catch((err) => {
+      console.log('123123123');
+      getFixRate(from, to)
+    })
+  }
+
+  function getFixRate(from, to) {
+    CurrDataApi.Convert(from, to)
+    .then((i) => {
+      localStorage.setItem('Сurrency', JSON.stringify(i))
+    })
+    .then(() => {
+      handelLocalVal()
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   function getLatesQuote(base) {
@@ -80,13 +96,6 @@ function App() {
     })
   }
 
-  // const arr = {
-  //   a: 123123,
-  //   d: 1231231231,
-  //   f: 123333444,
-  //   j: 1233333
-  // }
-
 
   function getKeys(item) {
     let result = Object.keys(item).map((key) => {
@@ -94,14 +103,6 @@ function App() {
     })
     return result
   }
-
-  // React.useEffect(() => {
-  //   let item = getKeys(arr)
-  //   localStorage.setItem('array', JSON.stringify(item))
-  // }, [])
-
-
-
 
 
 
@@ -112,6 +113,7 @@ function App() {
             <Converter
               currency = {isСurrency}
               exchangeRate = {getExchangeRate}
+              unit = {unit}
             />
         </Route>
 

@@ -1,17 +1,15 @@
 import React from 'react';
 import './Converter.css'
+import { Link } from 'react-router-dom';
 
-function Converter({currency, exchangeRate}) {
 
-  // const [ item, setItem ] = React.useState({});
+function Converter({currency, exchangeRate, unit}) {
+
+
   const [ result, setResult ] = React.useState('0');
-  const [ input, setInput ] = React.useState('');
-  const [ to, setTo ] = React.useState('USD')
-  const [ from, setFrom ] = React.useState('RUB')
-  // React.useEffect(() => {
-  //   let valute = JSON.parse(localStorage.getItem('cur'))
-  //   setItem(valute)
-  // }, [])
+  const [ input, setInput ] = React.useState('1');
+  const [ to, setTo ] = React.useState('USD');
+  const [ from, setFrom ] = React.useState('RUB');
 
   React.useEffect(() => {
     exchangeRate(from, to)
@@ -35,39 +33,52 @@ function Converter({currency, exchangeRate}) {
     setFrom(e.target.value)
   }
 
+  function hendelSwap(e) {
+    e.preventDefault();
+    let i = from;
+    let g = to;
+    let item = i;
+    i = g;
+    g = item;
+    setFrom(i);
+    setTo(g)
+  }
 
   return (
     <section className='converter'>
       <form className='converter__form'>
 
+        <input className='converter__input' autoComplete='off' type="text" />
         <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
-          <option className="converter__opt" value="GBP">GBP</option>
-          <option className="converter__opt" value="USD">USD</option>
-          <option className="converter__opt" value="RUB">RUB</option>
-          <option className="converter__opt" value="EUR">EUR</option>
-          <option className="converter__opt" value="CHF">CHF</option>
-          <option className="converter__opt" value="JPY">JPY</option>
-          <option className="converter__opt" value="UAH">UAH</option>
-          <option className="converter__opt" value="PLN">PLN</option>
+          <option value="GBP">GBP</option>
+          <option value="USD">USD</option>
+          <option value="RUB">RUB</option>
+          <option value="EUR">EUR</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY</option>
+          <option value="UAH">UAH</option>
+          <option value="PLN">PLN</option>
         </select>
 
-        <button className='converter__swap'></button>
+        <button onClick={hendelSwap} className='converter__swap'></button>
 
+        <input className='converter__input' type="text" />
         <select className="converter__select" value={to} onChange={handelChangeValues}>
-          <option className="converter__opt" value="GBP">GBP</option>
-          <option className="converter__opt" value="USD">USD</option>
-          <option className="converter__opt" value="RUB">RUB</option>
-          <option className="converter__opt" value="EUR">EUR</option>
-          <option className="converter__opt" value="CHF">CHF</option>
-          <option className="converter__opt" value="JPY">JPY</option>
-          <option className="converter__opt" value="UAH">UAH</option>
-          <option className="converter__opt" value="PLN">PLN</option>
+          <option value="GBP">GBP</option>
+          <option value="USD">USD</option>
+          <option value="RUB">RUB</option>
+          <option value="EUR">EUR</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY</option>
+          <option value="UAH">UAH</option>
+          <option value="PLN">PLN</option>
         </select>
 
-        <input placeholder='Введите число' className='converter__input' value={input} onChange={handelChangeInput} type="number" />
+        {/* <input placeholder='Введите число' className='converter__input' value={input} onChange={handelChangeInput} type="number" /> */}
       </form>
+      <p className="converter__result">1 {from} = {unit} {to}</p>
+      <Link className='converter__link' to="/rates">Посмотреть курс всех валют</Link>
 
-      <p className="converter__result">{result} {to}</p>
     </section>
   )
 }

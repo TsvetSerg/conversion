@@ -1,8 +1,9 @@
 .converter {
   /* border: 1px solid black; */
   background-color: white;
-  width: 400px;
-  height: 500px;
+  /* width: 800px; */
+  width: 100%;
+  /* height: 500px; */
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -11,7 +12,7 @@
 
 .converter__form {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   margin: 20px auto;
   width: calc(100% - 25px * 2);
 }
@@ -25,7 +26,7 @@
   -webkit-appearance: none;
 }
 
-.converter__input {
+/* .converter__input {
   margin-top: 50px;
   appearance: none;
   border: none;
@@ -33,40 +34,66 @@
   padding-bottom: 10px;
   padding-top: 10px;
   text-align: center;
-}
+} */
 
+.converter__input {
+  appearance: none;
+  border: none;
+  border: 2.5px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: 500;
+  font-size: 19px;
+  /* margin-left: 70px; */
+}
 
 .converter__select {
   border: none;
-  border: 1px solid rgba(94, 94, 94, 0.651);
-  border-radius: 20px;
-  height: 50px;
-  /* padding-left: 150px; */
+  border: 2.5px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   appearance: none;
   text-align: center;
   cursor: pointer;
+  /* margin-right: 70px; */
+
 }
 
-.converter__opt {
-  border: none;
-}
 
 .converter__result {
-  margin: auto;
+  text-align: center;
 }
 
 .converter__swap {
   margin: 0;
   padding: 0;
-  width: 30px;
+  width: 80px;
   height: 30px;
   border: none;
   background-color: transparent;
   background-image: url(../../vendor/images/arrow.svg);
   background-repeat: no-repeat;
   background-size: 30px 30px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin: auto 45px;
+  transform: rotate(90deg);
   cursor: pointer;
+}
+
+.converter__link {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: center;
+  color: #4285F4;
+  margin-bottom: 20px;
 }
