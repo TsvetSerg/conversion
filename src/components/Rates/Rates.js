@@ -23,7 +23,7 @@ function Rates({rates, lastQuote}) {
     } else if (window.innerWidth > 768) {
       return 3
     } else if (window.innerWidth > 320) {
-      return 1
+      return 2
     }
   })
 
@@ -46,14 +46,14 @@ function Rates({rates, lastQuote}) {
   return (
     <section className="rates">
       <select className="rates__select" onChange={handelChangeSelect} value={isBase}>
-        <option className="rates__opt" value="GBP">1 GBP</option>
-        <option className="rates__opt" value="USD">USD</option>
-        <option className="rates__opt" value="RUB">RUB</option>
-        <option className="rates__opt" value="EUR">EUR</option>
-        <option className="rates__opt" value="CHF">CHF</option>
-        <option className="rates__opt" value="JPY">JPY</option>
-        <option className="rates__opt" value="UAH">UAH</option>
-        <option className="rates__opt" value="PLN">PLN</option>
+        <option value="GBP">GBP</option>
+        <option value="USD">USD</option>
+        <option value="RUB">RUB</option>
+        <option value="EUR">EUR</option>
+        <option value="CHF">CHF</option>
+        <option value="JPY">JPY</option>
+        <option value="UAH">UAH</option>
+        <option value="PLN">PLN</option>
       </select>
       <ul className="rates__list">
         {

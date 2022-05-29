@@ -1,6 +1,6 @@
 .rates {
   background-color: white;
-  width: 400px;
+  width: 100%;
   min-height: 500px;
   border-radius: 30px;
   display: flex;
@@ -30,7 +30,8 @@
 .rates__list {
   margin: 0 auto;
   padding: 0;
-  /* border: 1px solid black; */
+  margin-left: 25px;
+  margin-right: 25px;
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -73,7 +74,7 @@
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 50px;
-  width: 320px;
+  width: calc(100% - 25px * 2);
   height: 36px;
   font-weight: 500;
   font-size: 12px;
@@ -89,4 +90,48 @@
 
 .rates___btn:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 520px) {
+  .rates {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .rates__list {
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(3, 80px);
+    gap: 10px 8px;
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-top: 25px;
+  }
+  .item__subtitle {
+    width: 55px;
+  }
+  .rates___btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .rates {
+    max-width: 250px;
+    min-height: 300px;
+  }
+  .rates__list {
+    grid-template-columns: repeat(2, 100px);
+    gap: 10px 18px;
+    margin: 25px 10px;
+    margin-bottom: 0;
+  }
+  .rates__select {
+    width: calc(100% - 10px * 2);
+  }
+  .rates___btn {
+    width: calc(100% - 10px * 2);
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 }

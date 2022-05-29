@@ -6,7 +6,11 @@
 }
 
 .page__container {
-  /* border: 1px solid black; */
   margin: 150px auto;
+}
 
+@media screen and (max-width: 390px) {
+  .page__container {
+    margin: 100px auto;
+  }
 }

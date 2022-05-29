@@ -14,6 +14,10 @@
   width: calc(100% - 25px * 2);
 }
 
+.converter__wrap {
+  display: flex;
+}
+
 .converter__input[type='number'] {
   -moz-appearance:textfield;
 }
@@ -54,6 +58,9 @@
 
 .converter__result {
   text-align: center;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 17px;
 }
 
 .converter__swap {
@@ -81,4 +88,47 @@
   text-align: center;
   color: #4285F4;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 870px) {
+  .converter {
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 30px * 2);
+  }
+  .converter__input {
+    width: 100%;
+  }
+  .converter__swap {
+    margin: auto;
+    margin-top: 10px;
+    width: 50px;
+    height: 30px;
+    background-size: 25px 25px;
+  }
+}
+
+
+@media screen and (max-width: 570px) {
+  .converter__form {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+
+  .converter__swap {
+    transform: none;
+    width: 30px;
+    margin: 10px auto;
+  }
+  .converter__link {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .converter__result {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+  }
 }

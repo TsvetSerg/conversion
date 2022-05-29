@@ -25,10 +25,6 @@ function Converter({currency, exchangeRate, unit}) {
     setInput(e.target.value.replace(/[^\d+$]/g, ''));
   }
 
-  function handelChangeResult(e) {
-    setResult(e.target.value.replace(/[^\d+$]/g, ''));
-  }
-
   function handelChangeValues(e) {
     setTo(e.target.value)
   }
@@ -56,31 +52,37 @@ function Converter({currency, exchangeRate, unit}) {
     <section className='converter'>
       <form className='converter__form'>
 
-        <input className='converter__input' autoComplete='off' type="text" value={input} onChange={handelChangeInput}/>
-        <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
-          <option value="GBP">GBP</option>
-          <option value="USD">USD</option>
-          <option value="RUB">RUB</option>
-          <option value="EUR">EUR</option>
-          <option value="CHF">CHF</option>
-          <option value="JPY">JPY</option>
-          <option value="UAH">UAH</option>
-          <option value="PLN">PLN</option>
-        </select>
+        <div className='converter__wrap'>
+          <input className='converter__input' autoComplete='off' type="text" value={input} onChange={handelChangeInput}/>
+          <select className="converter__select" value={from} onChange={handelChangeValueFrom}>
+            <option value="GBP">GBP</option>
+            <option value="USD">USD</option>
+            <option value="RUB">RUB</option>
+            <option value="EUR">EUR</option>
+            <option value="CHF">CHF</option>
+            <option value="JPY">JPY</option>
+            <option value="UAH">UAH</option>
+            <option value="PLN">PLN</option>
+          </select>
+        </div>
+
 
         <button onClick={hendelSwap} className='converter__swap'></button>
 
-        <input className='converter__input' type="text" autoComplete='off' value={result}/>
-        <select className="converter__select" value={to} onChange={handelChangeValues}>
-          <option value="GBP">GBP</option>
-          <option value="USD">USD</option>
-          <option value="RUB">RUB</option>
-          <option value="EUR">EUR</option>
-          <option value="CHF">CHF</option>
-          <option value="JPY">JPY</option>
-          <option value="UAH">UAH</option>
-          <option value="PLN">PLN</option>
-        </select>
+        <div className='converter__wrap'>
+          <input className='converter__input' type="text" autoComplete='off' value={result}/>
+          <select className="converter__select" value={to} onChange={handelChangeValues}>
+            <option value="GBP">GBP</option>
+            <option value="USD">USD</option>
+            <option value="RUB">RUB</option>
+            <option value="EUR">EUR</option>
+            <option value="CHF">CHF</option>
+            <option value="JPY">JPY</option>
+            <option value="UAH">UAH</option>
+            <option value="PLN">PLN</option>
+          </select>
+        </div>
+
       </form>
       <p className="converter__result">1 {from} = {unit} {to}</p>
       <Link className='converter__link' to="/rates">Посмотреть курс всех валют</Link>

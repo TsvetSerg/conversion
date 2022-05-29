@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Converter from '../Converter/Converter';
 import Rates from '../Rates/Rates';
 import * as СurrencyApi from '../../utils/СurrencyApi';
@@ -12,22 +12,7 @@ function App() {
 
   const [isСurrency, setСurrency] = React.useState({});
   const [isRates, setRates] = React.useState([]);
-  const [unit, setUnit] = React.useState('')
-
-  // React.useEffect(() => {
-  //   СurrencyApi.getСurrency('USD', 'EUR')
-  //   .then((item) => {
-  //     localStorage.setItem('Сurrency', JSON.stringify(item))
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }, [])
-
-  // React.useEffect(() => {
-  //   let valute = JSON.parse(localStorage.getItem('Сurrency'))
-  //   setСurrency(valute)
-  // }, [])
+  const [unit, setUnit] = React.useState('');
 
   function handelLocalVal() {
     let valute = JSON.parse(localStorage.getItem('Сurrency'))
@@ -42,13 +27,8 @@ function App() {
 
   function getExchangeRate(from, to) {
     СurrencyApi.getСurrency(from, to)
-    .then((response, i) => {
-      if (response.ok) {
-        localStorage.setItem('Сurrency', JSON.stringify(i))
-      } else {
-        getFixRate(from, to);
-      }
-
+    .then((i) => {
+      localStorage.setItem('Сurrency', JSON.stringify(i))
     })
     .then(() => {
       handelLocalVal()
@@ -107,8 +87,6 @@ function App() {
     })
     return result
   }
-
-
 
   return (
     <div className="page__container">
